@@ -1,9 +1,12 @@
 # gibbon
 
-![78-NVv_wQG6AphaibDx5tA (1) (1)](https://github.com/user-attachments/assets/a1f5961d-dd46-4667-9946-9bf52d40a889)
 
+Add the script to any website
+```html
+<script type="text/javascript" src="https://cdn.statically.io/gh/Navaneeth-Sharma/gibbon/main/gibbon-core-ec/build/gibbon.js"></script>
+```
 
-### Run locally 
+### Run Server locally 
 
 1. Clone the project 
     ```bash
