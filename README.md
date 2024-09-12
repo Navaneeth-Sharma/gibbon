@@ -8,7 +8,7 @@
 
 Add the script to any website
 ```html
-<script type="text/javascript" src="https://cdn.statically.io/gh/Navaneeth-Sharma/gibbon/main/gibbon-core-ec/build/gibbon.js"></script>
+<script type="text/javascript" src="../gibbon/main/gibbon-core-ec/build/gibbon.js"></script>
 ```
 After setting up the local server with database, you can do any activity(currently only supported for clicks) on the ui and it will be captured in the database.
 
