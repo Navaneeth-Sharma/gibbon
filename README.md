@@ -1,6 +1,11 @@
 # gibbon
 
 
+## System Architecture 
+![image](https://github.com/user-attachments/assets/f314aab3-0e0c-4ac1-964d-257a8d4ca007)
+
+
+
 Add the script to any website
 ```html
 <script type="text/javascript" src="https://cdn.statically.io/gh/Navaneeth-Sharma/gibbon/main/gibbon-core-ec/build/gibbon.js"></script>
@@ -31,3 +36,4 @@ After setting up the local server with database, you can do any activity(current
     uvicorn main:app --host 0.0.0.0 --port 7543
     ```
 
+Modify the db_visualize.py file to your needs 
