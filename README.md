@@ -6,7 +6,7 @@
 
 
 
-Add the script to any website
+Add the script to any website with appropriate path
 ```html
 <script type="text/javascript" src="../gibbon/main/gibbon-core-ec/build/gibbon.js"></script>
 ```
