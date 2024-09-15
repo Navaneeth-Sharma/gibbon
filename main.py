@@ -27,22 +27,22 @@ def read_root():
 
 @app.post("/event")
 async def post_event(request: Request):
-    # Check if the content encoding is gzip
-
     if request.headers.get("Content-Encoding") == "gzip":
         body_bytes = await request.body()
         decompressed_data = gzip.decompress(body_bytes).decode("utf-8")
         body = json.loads(decompressed_data)
-        # Insert data into the table
-        # for event in body:
-
+        
         json_ = json.dumps({"core": body["events"]})
-        if body["events"] != []:
-            # client.query("USE gibbon_core")
+        if body["events"]:
+            # Extract country and user from the first event in the list
+            first_event = body["events"][0]
+            country = first_event.get("country", "Unknown")
+            user = first_event.get("user", "Unknown")
+            
             client.query(
                 f"""
                     INSERT INTO gibbon_core.events (uuid, session_id, timestamp, user_id, country, browser, device, event) VALUES
-                    (generateUUIDv4(), '{body['sessionId']}', now(), 'nav', 'IN', '{body['browser']}', '{body['device']}', '{json_}' ),
+                    (generateUUIDv4(), '{body['sessionId']}', now(), '{user}', '{country}', '{body['browser']}', '{body['device']}', '{json_}' ),
                 """
             )
     else:
