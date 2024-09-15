@@ -110,19 +110,49 @@ const allElements = document.querySelectorAll("*");
 
 // Loop through each element and add an event listener
 
-allElements.forEach((element) => {
-  element.addEventListener("click", function (event) {
-    GLOBAL_DATA.events.push({
-      eventTargetTagName: event.target.tagName,
-      eventTargetId: event.target.id,
-      timestamp: Date.parse(new Date().toUTCString()),
-    });
+const captureEvent = (event) => {
+  GLOBAL_DATA.events.push({
+    eventType: event.type,
+    eventTargetTagName: event.target.tagName,
+    eventTargetId: event.target.id,
+    eventTargetClass: event.target.className,
+    timestamp: Date.now(),
+  });
+  console.log(GLOBAL_DATA);
+};
 
-    console.log(GLOBAL_DATA);
-    // You can stop the event from propagating further up the DOM
-    event.stopPropagation();
+const eventsToCapture = [
+  'click',
+  'dblclick',
+  'mousedown',
+  'mouseup',
+  'mouseover',
+  'mouseout',
+  'keydown',
+  'keyup',
+  'focus',
+  'blur',
+  'change',
+  'submit'
+];
+
+allElements.forEach((element) => {
+  eventsToCapture.forEach((eventType) => {
+    element.addEventListener(eventType, captureEvent, { capture: true, passive: true });
   });
 });
+
+// Capture scroll events on window
+window.addEventListener('scroll', (event) => {
+  captureEvent({
+    type: 'scroll',
+    target: {
+      tagName: 'WINDOW',
+      id: '',
+      className: ''
+    }
+  });
+}, { passive: true });
 
 const sendEventsToServer = async () => {
   try {
